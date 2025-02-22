@@ -2,7 +2,7 @@ clear all;
 clc;
 
 % Load data from CSV file
-data = readtable('C:\\Users\\Usama\\Desktop\\pipesim\\s2Prime2Mean_s2Mean_all_slices_reynolds.csv');
+data = readtable('C:\\Users\\eynolds.csv');
 
 % Extract unique z_positions and Reynolds numbers
 z_positions = unique(data.z_position);
