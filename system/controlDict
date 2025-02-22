@@ -1,0 +1,316 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     icoFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         6500;
+
+deltaT          5;
+
+writeControl    timeStep;
+
+writeInterval   100; //was 800
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  7;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+         #includeFunc Q
+         #includeFunc enstrophy
+         #includeFunc vorticity
+	 #includeFunc flowType
+         #includeFunc residuals
+	 #includeFunc singleGraph
+
+	scalar0
+	{
+		type            scalarTransport;
+		functionObjectLibs ("libsolverFunctionObjects.so");		
+		D		1e-3;
+                field 		s;
+	}
+//-------------------
+	scalar1
+	{
+		
+                type scalarTransport;
+		functionObjectLibs ("libutilityFunctionObjects.so");		
+		enabled true;
+		writeControl outputTime;
+		D 		1.67e-3;
+ 		field s1;
+
+		fvOptions
+		{
+		    scalar1
+			{
+		        type            scalarFixedValueConstraint;
+		        active          true;
+
+	   	    	scalarFixedValueConstraintCoeffs 
+			    {
+		    		selectionMode   cellZone;
+				cellZone	source1;
+				fieldValues
+		    		{
+		        	    s1 1;
+		    		}
+		             }
+			}
+		}
+	}
+	scalar2
+	{
+		
+                type scalarTransport;
+		functionObjectLibs ("libutilityFunctionObjects.so");		
+		enabled true;
+		writeControl outputTime;
+		D 		1e-3;
+ 		field s2;
+
+		fvOptions
+		{
+		    scalar1
+			{
+		        type            scalarFixedValueConstraint;
+		        active          true;
+
+	   	    	scalarFixedValueConstraintCoeffs 
+			    {
+		    		selectionMode   cellZone;
+				cellZone	source1;
+				fieldValues
+		    		{
+		        	    s2 1;
+		    		}
+		             }
+			}
+		}
+	}
+	scalar3
+	{
+		
+                type scalarTransport;
+		functionObjectLibs ("libutilityFunctionObjects.so");		
+		enabled true;
+		writeControl outputTime;
+		D 		1e-3;
+ 		field s3;
+
+		fvOptions
+		{
+		    scalar1
+			{
+		        type            scalarFixedValueConstraint;
+		        active          true;
+
+	   	    	scalarFixedValueConstraintCoeffs 
+			    {
+		    		selectionMode   cellZone;
+				cellZone	source1;
+				fieldValues
+		    		{
+		        	    s3 1;
+		    		}
+		             }
+			}
+		}
+	}
+	scalar4
+	{
+		
+                type scalarTransport;
+		functionObjectLibs ("libutilityFunctionObjects.so");		
+		enabled true;
+		writeControl outputTime;
+		D 		1e-3;
+ 		field s4;
+
+		fvOptions
+		{
+		    scalar1
+			{
+		        type            scalarFixedValueConstraint;
+		        active          true;
+
+	   	    	scalarFixedValueConstraintCoeffs 
+			    {
+		    		selectionMode   cellZone;
+				cellZone	source2;
+				fieldValues
+		    		{
+		        	    s4 1;
+		    		}
+		             }
+			}
+		}
+	}
+	scalar5
+	{
+		
+                type scalarTransport;
+		functionObjectLibs ("libutilityFunctionObjects.so");		
+		enabled true;
+		writeControl outputTime;
+		D 		1e-3;
+ 		field s5;
+
+		fvOptions
+		{
+		    scalar1
+			{
+		        type            scalarFixedValueConstraint;
+		        active          true;
+
+	   	    	scalarFixedValueConstraintCoeffs 
+			    {
+		    		selectionMode   cellZone;
+				cellZone	source3;
+				fieldValues
+		    		{
+		        	    s5 1;
+		    		}
+		             }
+			}
+		}
+	}
+	scalar6
+	{
+		
+                type scalarTransport;
+		functionObjectLibs ("libutilityFunctionObjects.so");		
+		enabled true;
+		writeControl outputTime;
+		D 		1e-3;
+ 		field s6;
+
+		fvOptions
+		{
+		    scalar1
+			{
+		        type            scalarFixedValueConstraint;
+		        active          true;
+
+	   	    	scalarFixedValueConstraintCoeffs 
+			    {
+		    		selectionMode   cellZone;
+				cellZone	source4;
+				fieldValues
+		    		{
+		        	    s6 1;
+		    		}
+		             }
+			}
+		}
+	}
+
+//-------------------------------------------------------------------------
+	    fieldAverage1
+    {
+        type            fieldAverage;
+        libs            ("libfieldFunctionObjects.so");
+        startFrom	StartTime;
+	StartTime	200;
+	writeControl    writeTime;
+        fields
+        (
+            U
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            s1
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            s2
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            s3
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            s4
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            s5
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            s6
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            p
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+        );
+    }
+	 #includeFunc div(U)
+         #includeFunc grad(U)
+         #includeFunc grad(p)
+ 	 #includeFunc grad(s4)
+ 	 #includeFunc grad(s)
+ 	 #includeFunc grad(s1)
+ 	 #includeFunc grad(s2)
+ 	 #includeFunc grad(s3)
+ 	 #includeFunc grad(s4)
+ 	 #includeFunc grad(s5)
+ 	 #includeFunc grad(s6)
+         #includeFunc grad(vorticity)
+
+}
+
+
+// ************************************************************************* //

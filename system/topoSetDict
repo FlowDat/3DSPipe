@@ -1,0 +1,121 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+
+    {
+        name    source1;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;
+        sourceInfo
+        {
+           p1 (0 0 -4); 
+	   p2 (0 0 -9);
+	   radius 3;
+           inneradius 0;           
+        }
+    }
+
+    {
+        name    source1;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set source1;
+        }
+    }
+
+    {
+        name    source2;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;
+        sourceInfo
+        {
+           p1 (0 3 -4); 
+	   p2 (0 3 -9);
+	   radius 3;
+           inneradius 0;           
+        }
+    }
+
+    {
+        name    source2;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set source2;
+        }
+    }
+
+    {
+        name    source3;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;
+        sourceInfo
+        {
+           p1 (0 6 -4); 
+	   p2 (0 6 -9);
+	   radius 3;
+           inneradius 0;           
+        }
+    }
+
+    {
+        name    source3;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set source3;
+        }
+    }
+    {
+        name    source4;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;
+        sourceInfo
+        {
+           p1 (0 9 -4); 
+	   p2 (0 9 -9);
+	   radius 3;
+           inneradius 0;           
+        }
+    }
+
+    {
+        name    source4;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set source4;
+        }
+    }
+
+);
+
+// ************************************************************************* //

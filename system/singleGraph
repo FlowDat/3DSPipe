@@ -1,0 +1,47 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+|  \\    /   O peration     | Version:  plus                                  |  
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Writes graph data for specified fields along a line, specified by start
+    and end points.
+
+\*---------------------------------------------------------------------------*/
+
+start   (0 -12.5 50);
+end     (0 12.5 50);
+fields  (U p s s1 s2 s3 s4 s5 s6 vorticity flowType Q phi);
+
+start   (0 -12.5 40);
+end     (0 12.5 40);
+fields  (U p s s1 s2 s3 s4 s5 s6 vorticity flowType Q phi);
+
+start   (0 -12.5 30);
+end     (0 12.5 30);
+fields  (U p s s1 s2 s3 s4 s5 s6 vorticity flowType Q phi);
+
+start   (0 -12.5 20);
+end     (0 12.5 20);
+fields  (U p s s1 s2 s3 s4 s5 s6 vorticity flowType Q phi);
+
+start   (0 -12.5 10);
+end     (0 12.5 10);
+fields  (U p s s1 s2 s3 s4 s5 s6 vorticity flowType Q phi);
+
+start   (0 -12.5 -5);
+end     (0 12.5 -5);
+fields  (U p s s1 s2 s3 s4 s5 s6 vorticity flowType Q phi);
+
+// Sampling and I/O settings
+#includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"
+
+// Override settings here, e.g.
+// setConfig { type midPoint; }
+
+// Must be last entry
+#includeEtc "caseDicts/postProcessing/graphs/graph.cfg"
+
+// ************************************************************************* //
